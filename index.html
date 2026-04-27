@@ -61,6 +61,19 @@
     transition: color 0.2s;
   }
   nav.top .nav-links a:hover { color: var(--accent); }
+  nav.top .nav-cta {
+    background: var(--primary);
+    color: white !important;
+    padding: 9px 20px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s;
+  }
+  nav.top .nav-cta:hover {
+    background: var(--accent-deep);
+    color: white !important;
+  }
   @media (max-width: 768px) {
     nav.top { padding: 14px 20px; }
     nav.top .nav-links { display: none; }
@@ -156,22 +169,36 @@
     animation: fadeInUp 0.8s ease 0.3s both;
   }
 
-  .hero-meta {
-    display: flex; align-items: center; gap: 24px;
-    flex-wrap: wrap;
+  .hero-ctas {
+    display: flex; gap: 14px; flex-wrap: wrap;
     animation: fadeInUp 0.8s ease 0.4s both;
   }
-  .hero-meta .meta-item {
-    display: flex; align-items: center; gap: 8px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.04em;
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 14px 28px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.3s;
+    cursor: pointer;
   }
-  .hero-meta .meta-item::before {
-    content: ''; display: block;
-    width: 4px; height: 4px;
-    background: var(--accent); border-radius: 50%;
+  .hero-cta.primary {
+    background: var(--primary);
+    color: white;
+  }
+  .hero-cta.primary:hover {
+    background: var(--accent-deep);
+    transform: translateY(-2px);
+  }
+  .hero-cta.secondary {
+    background: transparent;
+    color: var(--primary);
+    border: 1.5px solid rgba(10, 37, 64, 0.18);
+  }
+  .hero-cta.secondary:hover {
+    border-color: var(--primary);
+    background: rgba(10, 37, 64, 0.04);
   }
 
   @keyframes fadeInUp {
@@ -668,8 +695,8 @@
   <div class="nav-links">
     <a href="#about">關於</a>
     <a href="#services">服務</a>
-    <a href="#cases">作品</a>
-    <a href="#contact">聯絡</a>
+    <a href="#cases">案例</a>
+    <a href="#contact" class="nav-cta">聊聊需求</a>
   </div>
 </nav>
 
@@ -680,16 +707,15 @@
     <div class="hero-tagline"><span class="dot"></span>來交朋友的 AI 後勤夥伴</div>
     <h1>
       AI 罩你的後勤,<br class="br-desktop"><br class="br-mobile">
-      你顧 <span class="accent-text">前場</span> 就好。
+      <span class="accent-text">你顧前場</span>就好。
     </h1>
     <p class="hero-sub">
-      從家裡的傳產廠開始,我用 AI 把報價、文書、客服流程一個個自動化。
-      現在,把這套經驗帶給其他需要的人。
+      從家裡的傳產廠開始,我用 AI 把報價、文書、流程一個個自動化。
+      現在,把這套經驗帶給其他想讓生意輕鬆一點的老闆。
     </p>
-    <div class="hero-meta">
-      <span class="meta-item">2026 起</span>
-      <span class="meta-item">陳昱嘉 Jason Chen</span>
-      <span class="meta-item">為傳產與中小企業而生</span>
+    <div class="hero-ctas">
+      <a href="#contact" class="hero-cta primary">聊聊你的需求 →</a>
+      <a href="#cases" class="hero-cta secondary">看看做過什麼</a>
     </div>
   </div>
 </section>
