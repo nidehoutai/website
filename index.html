@@ -77,7 +77,9 @@
   }
   @media (max-width: 768px) {
     nav.top { padding: 14px 20px; }
-    nav.top .nav-links { display: none; }
+    nav.top .nav-links { gap: 0; }
+    nav.top .nav-links a:not(.nav-cta) { display: none; }
+    nav.top .nav-cta { padding: 7px 14px; font-size: 12px; }
   }
 
   /* ========== HERO ========== */
@@ -88,6 +90,12 @@
     position: relative;
     display: flex; align-items: center;
     overflow: hidden;
+  }
+  @media (max-width: 768px) {
+    .hero {
+      min-height: auto;
+      padding: 100px 20px 60px;
+    }
   }
 
   /* 背景裝飾 - 巨大透明的菱形 logo */
@@ -201,6 +209,16 @@
     border-color: var(--primary);
     background: rgba(10, 37, 64, 0.04);
   }
+  @media (max-width: 480px) {
+    .hero-ctas { width: 100%; gap: 10px; }
+    .hero-cta {
+      flex: 1;
+      min-width: 140px;
+      justify-content: center;
+      padding: 13px 20px;
+      font-size: 14px;
+    }
+  }
 
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -237,12 +255,14 @@
   .section-title {
     font-family: 'Fraunces', 'Noto Sans TC', serif;
     font-weight: 500;
-    font-size: clamp(32px, 4.5vw, 52px);
-    line-height: 1.2;
+    font-size: clamp(28px, 4.5vw, 52px);
+    line-height: 1.25;
     color: var(--primary);
     letter-spacing: -0.02em;
     margin-bottom: 24px;
+    word-break: keep-all;
   }
+  .hero h1 { word-break: keep-all; }
 
   /* ========== ABOUT ========== */
   .about {
