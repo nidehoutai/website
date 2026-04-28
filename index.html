@@ -479,6 +479,73 @@
     border-radius: 4px;
   }
 
+  .case-try {
+    display: flex; align-items: center; gap: 22px;
+    margin-top: 28px;
+    padding: 20px;
+    background: var(--surface);
+    border-radius: 12px;
+    border: 0.5px solid var(--border);
+  }
+  .case-try .qr-block {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    flex-shrink: 0;
+  }
+  .case-try .qr-block .qr-img {
+    width: 110px; height: 110px;
+    border-radius: 8px;
+    background: var(--bg-warm);
+    padding: 4px;
+    border: 0.5px solid var(--border);
+  }
+  .case-try .qr-caption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .case-try-cta {
+    flex: 1;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .case-try-cta .try-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .case-try-cta .try-text strong {
+    color: var(--primary);
+    font-weight: 500;
+  }
+  .case-try-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    align-self: flex-start;
+    background: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .case-try-btn:hover {
+    background: var(--accent-deep);
+    transform: translateY(-2px);
+  }
+  @media (max-width: 480px) {
+    .case-try {
+      flex-direction: column;
+      text-align: center;
+      gap: 16px;
+    }
+    .case-try-cta {
+      align-items: center;
+    }
+    .case-try-btn { align-self: center; }
+  }
+
   .case-image {
     position: relative;
     border-radius: 16px;
@@ -905,6 +972,20 @@
             <span>AI 繪圖 API</span>
             <span>LINE Messaging API</span>
             <span>排程系統</span>
+          </div>
+          <div class="case-try">
+            <div class="qr-block">
+              <img src="line-qr.svg" alt="加入每日新聞 LINE 帳號" class="qr-img">
+              <span class="qr-caption">SCAN ME</span>
+            </div>
+            <div class="case-try-cta">
+              <p class="try-text">
+                <strong>歡迎玩玩看 →</strong> 加好友後,每天早上幫你看完當天新聞,送漫畫到你的 LINE。
+              </p>
+              <a href="https://line.me/R/ti/p/@101ilhvf" target="_blank" rel="noopener" class="case-try-btn">
+                用手機加好友 →
+              </a>
+            </div>
           </div>
         </div>
         <div class="case-image">
