@@ -7,213 +7,186 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;700;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Noto Sans TC', sans-serif; }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: 'Noto Sans TC', sans-serif;
-  background: #111;
-}
-
-/* ── WRAPPER ── */
+/* ── CAROUSEL ── */
 .wrap {
   display: flex;
   width: 300vw;
-  height: 100dvh;
   transition: transform .42s cubic-bezier(.4,0,.2,1);
   will-change: transform;
 }
 
-/* Each panel exactly one screen */
 .panel {
   width: 100vw;
   height: 100dvh;
   flex-shrink: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
-/* ── PANEL A ── */
-.a {
-  background: #F4F0E8;
+/* ── SECTION LABELS ── */
+.sec-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
 }
-.a .top {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 36px 40px;
+
+/* ════════════════════════
+   PANEL A — 乾淨信任
+════════════════════════ */
+.a { background: #F8F5EF; }
+
+.a-hero {
+  background: #F4F0E8;
+  padding: 56px 32px 36px;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
-.a .ghost {
+.a-hero-ghost {
   position: absolute;
-  right: -16px;
-  top: -20px;
-  font-size: min(52vw, 260px);
+  right: -12px; top: -24px;
+  font-size: min(55vw, 280px);
   font-weight: 900;
   color: rgba(139,107,30,.07);
-  line-height: 1;
-  letter-spacing: -.04em;
-  user-select: none;
+  line-height: 1; letter-spacing: -.04em;
+  user-select: none; pointer-events: none;
 }
-.a .tag { color: #A8802A; }
-.a h1 { color: #1A1714; }
-.a h1 em { color: #8B6B1E; }
-.a .sub { color: #9A8B7C; }
-.a .bar { background: linear-gradient(90deg,#F4F0E8,#DDD5C0 30%,#C49A30 60%,#8B6B1E 80%,#1A1714); }
-.a .bottom { background: #EDE8DC; }
-.a .chip { background: #F4F0E8; color: #8B6B1E; }
-.a .demo { background: #F4F0E8; }
-.a .dh { color: #1A1714; }
-.a .da { color: #8B6B1E; }
-.a .dl { color: #9A8B7C; }
+.a-dir { font-size: 10px; font-weight: 700; letter-spacing: .22em; color: #A8802A; text-transform: uppercase; margin-bottom: 18px; position: relative; z-index: 1; }
+.a-hero h1 { font-size: clamp(32px, 9vw, 52px); font-weight: 900; color: #1A1714; line-height: 1.12; letter-spacing: -.02em; margin-bottom: 14px; position: relative; z-index: 1; }
+.a-hero h1 em { font-style: normal; color: #8B6B1E; }
+.a-hero .concept { font-size: 12px; font-weight: 300; color: #9A8B7C; letter-spacing: .1em; position: relative; z-index: 1; }
 
-/* ── PANEL B ── */
-.b {
+.a-bar { height: 6px; background: linear-gradient(90deg,#F4F0E8,#DDD5C0 28%,#C49A30 58%,#8B6B1E 78%,#1A1714); flex-shrink: 0; }
+
+/* A — IDEA */
+.a-idea { padding: 28px 32px 24px; border-bottom: 1px solid #EAE5DC; flex-shrink: 0; }
+.a-idea .sec-label { color: #A8802A; }
+.a-idea-text { font-size: 13px; font-weight: 300; color: #6B5F52; line-height: 1.9; }
+.a-idea-text strong { font-weight: 700; color: #1A1714; }
+
+/* A — PALETTE */
+.a-palette { padding: 24px 32px; border-bottom: 1px solid #EAE5DC; flex-shrink: 0; }
+.a-palette .sec-label { color: #A8802A; }
+.palette-row { display: flex; align-items: flex-end; gap: 10px; margin-bottom: 12px; }
+.sw { border-radius: 6px; flex-shrink: 0; }
+.sw-xl { width: 56px; height: 56px; }
+.sw-lg { width: 44px; height: 44px; }
+.sw-md { width: 32px; height: 32px; }
+.sw-sm { width: 22px; height: 22px; }
+.sw-xs { width: 14px; height: 14px; }
+.palette-detail { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.pd-row { display: flex; align-items: center; gap: 10px; }
+.pd-sw { border-radius: 4px; flex-shrink: 0; }
+.pd-info { display: flex; flex-direction: column; gap: 1px; flex: 1; }
+.pd-name { font-size: 11px; font-weight: 500; color: #1A1714; }
+.pd-hex { font-size: 10px; font-weight: 300; color: #9A8B7C; font-family: monospace; }
+.pd-use { font-size: 10px; font-weight: 300; color: #B0A390; }
+
+/* A — TYPOGRAPHY */
+.a-typo { padding: 24px 32px 32px; flex-shrink: 0; }
+.a-typo .sec-label { color: #A8802A; }
+.typo-block { margin-bottom: 16px; padding: 16px 18px; border-radius: 8px; }
+.a .typo-block { background: #EDE8DC; }
+.typo-spec { font-size: 9px; font-weight: 500; letter-spacing: .12em; color: #9A8B7C; text-transform: uppercase; margin-bottom: 6px; }
+.typo-sample { line-height: 1.1; }
+.typo-note { font-size: 10px; font-weight: 300; color: #9A8B7C; margin-top: 4px; }
+
+/* ════════════════════════
+   PANEL B — 黑金力量
+════════════════════════ */
+.b { background: #0F0D0A; }
+
+.b-hero {
   background: #0D0B08;
-}
-.b .top {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 36px 40px;
+  background-image: radial-gradient(ellipse at 75% 0%, rgba(180,130,20,.2) 0%, transparent 55%);
+  padding: 56px 32px 36px;
   position: relative;
   overflow: hidden;
-  background: radial-gradient(ellipse at 80% 0%, rgba(180,130,20,.18) 0%, transparent 55%);
+  flex-shrink: 0;
 }
-.b .ghost {
+.b-hero-ghost {
   position: absolute;
-  right: -16px;
-  top: -20px;
-  font-size: min(52vw, 260px);
+  right: -12px; top: -24px;
+  font-size: min(55vw, 280px);
   font-weight: 900;
   color: rgba(200,160,40,.05);
-  line-height: 1;
-  letter-spacing: -.04em;
-  user-select: none;
+  line-height: 1; letter-spacing: -.04em;
+  user-select: none; pointer-events: none;
 }
-.b .tag { color: #C49A30; }
-.b h1 { color: #fff; }
-.b h1 em { color: #E8C060; }
-.b .sub { color: rgba(255,255,255,.35); }
-.b .bar { background: linear-gradient(90deg,#111,#1C1810 30%,#C49A30 62%,#E8C060 82%,#FDF6DC); }
-.b .bottom { background: #161410; }
-.b .chip { background: rgba(255,255,255,.06); color: #C49A30; border: 1px solid rgba(196,154,48,.22); }
-.b .demo { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); }
-.b .dh { color: #fff; }
-.b .da { color: #E8C060; }
-.b .dl { color: rgba(255,255,255,.28); }
+.b-dir { font-size: 10px; font-weight: 700; letter-spacing: .22em; color: #C49A30; text-transform: uppercase; margin-bottom: 18px; position: relative; z-index: 1; }
+.b-hero h1 { font-size: clamp(32px, 9vw, 52px); font-weight: 900; color: #fff; line-height: 1.12; letter-spacing: -.02em; margin-bottom: 14px; position: relative; z-index: 1; }
+.b-hero h1 em { font-style: normal; color: #E8C060; }
+.b-hero .concept { font-size: 12px; font-weight: 300; color: rgba(255,255,255,.32); letter-spacing: .1em; position: relative; z-index: 1; }
 
-/* ── PANEL C ── */
-.c {
+.b-bar { height: 6px; background: linear-gradient(90deg,#111,#1C1810 28%,#C49A30 58%,#E8C060 78%,#FDF6DC); flex-shrink: 0; }
+
+.b-idea { padding: 28px 32px 24px; border-bottom: 1px solid rgba(255,255,255,.07); flex-shrink: 0; }
+.b-idea .sec-label { color: #C49A30; }
+.b-idea-text { font-size: 13px; font-weight: 300; color: rgba(255,255,255,.5); line-height: 1.9; }
+.b-idea-text strong { font-weight: 700; color: #fff; }
+
+.b-palette { padding: 24px 32px; border-bottom: 1px solid rgba(255,255,255,.07); flex-shrink: 0; }
+.b-palette .sec-label { color: #C49A30; }
+.b .pd-name { color: #fff; }
+.b .pd-hex { color: rgba(255,255,255,.35); }
+.b .pd-use { color: rgba(255,255,255,.22); }
+
+.b-typo { padding: 24px 32px 32px; flex-shrink: 0; }
+.b-typo .sec-label { color: #C49A30; }
+.b .typo-block { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); }
+.b .typo-spec { color: rgba(255,255,255,.28); }
+.b .typo-note { color: rgba(255,255,255,.25); }
+
+/* ════════════════════════
+   PANEL C — 真人品牌
+════════════════════════ */
+.c { background: #F9F8F5; }
+
+.c-hero {
   background: #FAFAF8;
-}
-.c .top {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 36px 40px;
+  padding: 56px 32px 36px;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
-.c .ghost {
+.c-hero-ghost {
   position: absolute;
-  right: -16px;
-  top: -20px;
-  font-size: min(52vw, 260px);
+  right: -12px; top: -24px;
+  font-size: min(55vw, 280px);
   font-weight: 900;
   color: rgba(0,0,0,.04);
-  line-height: 1;
-  letter-spacing: -.04em;
-  user-select: none;
+  line-height: 1; letter-spacing: -.04em;
+  user-select: none; pointer-events: none;
 }
-.c .tag { color: #999; }
-.c h1 { color: #1C1C1A; }
-.c h1 em { color: #D4A820; }
-.c .sub { color: #AAA; }
-.c .bar { background: linear-gradient(90deg,#FFF,#EEE 30%,#1C1C1A 55%,#D4A820 78%,#AAA); }
-.c .bottom { background: #EDEBE6; }
-.c .chip { background: #E0DDD7; color: #555; }
-.c .demo { background: #E0DDD7; }
-.c .dh { color: #1C1C1A; }
-.c .da { color: #D4A820; }
-.c .dl { color: #AAA; }
+.c-dir { font-size: 10px; font-weight: 700; letter-spacing: .22em; color: #888; text-transform: uppercase; margin-bottom: 18px; position: relative; z-index: 1; }
+.c-hero h1 { font-size: clamp(32px, 9vw, 52px); font-weight: 900; color: #1C1C1A; line-height: 1.12; letter-spacing: -.02em; margin-bottom: 14px; position: relative; z-index: 1; }
+.c-hero h1 em { font-style: normal; color: #D4A820; }
+.c-hero .concept { font-size: 12px; font-weight: 300; color: #AAA; letter-spacing: .1em; position: relative; z-index: 1; }
 
-/* ── SHARED ── */
-.tag {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .24em;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  position: relative;
-  z-index: 1;
-}
+.c-bar { height: 6px; background: linear-gradient(90deg,#FFF,#EEE 28%,#1C1C1A 55%,#D4A820 75%,#AAA); flex-shrink: 0; }
 
-h1 {
-  font-size: clamp(38px, 11vw, 64px);
-  font-weight: 900;
-  line-height: 1.12;
-  letter-spacing: -.02em;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
-}
-h1 em { font-style: normal; }
+.c-idea { padding: 28px 32px 24px; border-bottom: 1px solid #E8E4DC; flex-shrink: 0; }
+.c-idea .sec-label { color: #888; }
+.c-idea-text { font-size: 13px; font-weight: 300; color: #6B6560; line-height: 1.9; }
+.c-idea-text strong { font-weight: 700; color: #1C1C1A; }
 
-.sub {
-  font-size: 13px;
-  font-weight: 300;
-  letter-spacing: .1em;
-  position: relative;
-  z-index: 1;
-}
+.c-palette { padding: 24px 32px; border-bottom: 1px solid #E8E4DC; flex-shrink: 0; }
+.c-palette .sec-label { color: #888; }
+.c .pd-name { color: #1C1C1A; }
+.c .pd-hex { color: #AAA; }
+.c .pd-use { color: #C0BAB0; }
 
-.bar { height: 7px; flex-shrink: 0; }
-
-.bottom {
-  flex-shrink: 0;
-  padding: 24px 36px 36px;
-}
-
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.chip {
-  font-size: 12px;
-  font-weight: 500;
-  padding: 6px 14px;
-  border-radius: 5px;
-  letter-spacing: .04em;
-}
-
-.demo {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  padding: 16px 20px;
-  border-radius: 10px;
-}
-.dh, .da {
-  font-size: 28px;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -.01em;
-}
-.dl {
-  font-size: 13px;
-  font-weight: 100;
-  line-height: 1;
-}
+.c-typo { padding: 24px 32px 32px; flex-shrink: 0; }
+.c-typo .sec-label { color: #888; }
+.c .typo-block { background: #EDEBE6; }
+.c .typo-spec { color: #AAA; }
+.c .typo-note { color: #AAA; }
 
 /* ── DOTS ── */
 .dots {
@@ -226,38 +199,20 @@ h1 em { font-style: normal; }
   z-index: 99;
   pointer-events: none;
 }
-.dot {
-  height: 6px;
-  width: 6px;
-  border-radius: 3px;
-  background: rgba(255,255,255,.28);
-  transition: all .35s ease;
-}
-.dot.on {
-  width: 22px;
-  background: rgba(255,255,255,.85);
-}
+.dot { height: 6px; width: 6px; border-radius: 3px; background: rgba(120,110,100,.4); transition: all .35s; }
+.dot.on { width: 22px; background: rgba(100,80,40,.7); }
+.b-active .dot.on { background: rgba(220,180,60,.8); }
 
 /* desktop arrows */
 .arr {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 99;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.14);
-  color: rgba(255,255,255,.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background .2s;
+  position: fixed; top: 50%; transform: translateY(-50%);
+  z-index: 99; width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(0,0,0,.12); border: 1px solid rgba(0,0,0,.12);
+  color: rgba(0,0,0,.5); display: flex; align-items: center;
+  justify-content: center; cursor: pointer; transition: background .2s;
   -webkit-tap-highlight-color: transparent;
 }
-.arr:hover { background: rgba(255,255,255,.18); }
+.arr:hover { background: rgba(0,0,0,.2); }
 .arr.L { left: 14px; }
 .arr.R { right: 14px; }
 @media (hover:none) { .arr { display: none; } }
@@ -267,86 +222,301 @@ h1 em { font-style: normal; }
 
 <div class="wrap" id="wrap">
 
-  <!-- A -->
-  <div class="panel a">
-    <div class="top">
-      <div class="ghost">A</div>
-      <div class="tag">Direction A</div>
-      <h1>你的條件，<br>我幫你<em>整理方向</em></h1>
-      <div class="sub">釐清現況 · 掌握可能 · 規劃下一步</div>
+<!-- ══════ PANEL A ══════ -->
+<div class="panel a">
+  <div class="a-hero">
+    <div class="a-hero-ghost">A</div>
+    <div class="a-dir">Direction A</div>
+    <h1>你的條件，<br>我幫你<em>整理方向</em></h1>
+    <div class="concept">釐清現況 · 掌握可能 · 規劃下一步</div>
+  </div>
+  <div class="a-bar"></div>
+
+  <!-- IDEA -->
+  <div class="a-idea">
+    <div class="sec-label" style="color:#A8802A">設計理念</div>
+    <div class="a-idea-text">
+      <strong>信任感・顧問質感。</strong>讓人第一眼覺得「這間很正派、不急著推銷」。米白底色帶有溫度，不冷漠。對標財務顧問、保險業務員個人品牌網站，適合想長期建立品牌的方向。
     </div>
-    <div class="bar"></div>
-    <div class="bottom">
-      <div class="chips">
-        <span class="chip">米白底色</span>
-        <span class="chip">暖金點綴</span>
-        <span class="chip">極簡留白</span>
-        <span class="chip">顧問質感</span>
+  </div>
+
+  <!-- PALETTE -->
+  <div class="a-palette">
+    <div class="sec-label" style="color:#A8802A">配色方案</div>
+    <div class="palette-detail">
+      <div class="pd-row">
+        <div class="pd-sw sw-xl" style="background:#F4F0E8"></div>
+        <div class="pd-info">
+          <div class="pd-name">暖米白</div>
+          <div class="pd-hex">#F4F0E8</div>
+          <div class="pd-use">主背景 — 佔整體約 60%</div>
+        </div>
       </div>
-      <div class="demo">
-        <span class="dh">標題</span>
-        <span class="da">金</span>
-        <span class="dl">輕量說明文字</span>
+      <div class="pd-row">
+        <div class="pd-sw sw-lg" style="background:#EDE8DC"></div>
+        <div class="pd-info">
+          <div class="pd-name">米白次色</div>
+          <div class="pd-hex">#EDE8DC</div>
+          <div class="pd-use">區塊底色 / 卡片 — 約 25%</div>
+        </div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-sw sw-md" style="background:#C49A30"></div>
+        <div class="pd-info">
+          <div class="pd-name">暖金</div>
+          <div class="pd-hex">#C49A30</div>
+          <div class="pd-use">強調色 / 重點文字 — 約 10%</div>
+        </div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-sw sw-sm" style="background:#8B6B1E"></div>
+        <div class="pd-info">
+          <div class="pd-name">深金</div>
+          <div class="pd-hex">#8B6B1E</div>
+          <div class="pd-use">按鈕 / 邊框 — 約 3%</div>
+        </div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-sw sw-xs" style="background:#1A1714"></div>
+        <div class="pd-info">
+          <div class="pd-name">炭黑</div>
+          <div class="pd-hex">#1A1714</div>
+          <div class="pd-use">主文字 / 導覽列 — 約 2%</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- B -->
-  <div class="panel b">
-    <div class="top">
-      <div class="ghost">B</div>
-      <div class="tag">Direction B</div>
-      <h1>找<em>阿哥</em><br>解燃眉之急</h1>
-      <div class="sub">合法 · 專業 · 安全 · 一條龍服務</div>
+  <!-- TYPOGRAPHY -->
+  <div class="a-typo">
+    <div class="sec-label" style="color:#A8802A">字型規劃</div>
+
+    <div class="typo-block">
+      <div class="typo-spec">主標題 · Noto Sans TC 900 · 48–56px</div>
+      <div class="typo-sample" style="font-size:36px;font-weight:900;color:#1A1714;letter-spacing:-.02em">你的條件</div>
+      <div class="typo-note">頁面最大標題，最多兩行，主角地位</div>
     </div>
-    <div class="bar"></div>
-    <div class="bottom">
-      <div class="chips">
-        <span class="chip">深黑底色</span>
-        <span class="chip">黃金大字</span>
-        <span class="chip">衝擊力強</span>
-        <span class="chip">廣告一致</span>
-      </div>
-      <div class="demo">
-        <span class="dh">標題</span>
-        <span class="da">金</span>
-        <span class="dl">說明文字</span>
-      </div>
+
+    <div class="typo-block">
+      <div class="typo-spec">強調色字 · Noto Sans TC 900 · 同標題尺寸</div>
+      <div class="typo-sample" style="font-size:36px;font-weight:900;color:#8B6B1E;letter-spacing:-.02em">整理方向</div>
+      <div class="typo-note">關鍵詞加金色，同樣大字，視覺點睛</div>
+    </div>
+
+    <div class="typo-block">
+      <div class="typo-spec">副標 · Noto Sans TC 300 · 14–16px</div>
+      <div class="typo-sample" style="font-size:15px;font-weight:300;color:#9A8B7C;letter-spacing:.06em">釐清現況・掌握可能・規劃下一步</div>
+      <div class="typo-note">超細字與超粗標題形成強烈對比，是這組的核心美感</div>
+    </div>
+
+    <div class="typo-block">
+      <div class="typo-spec">內文 · Noto Sans TC 300 · 13–14px</div>
+      <div class="typo-sample" style="font-size:13px;font-weight:300;color:#6B5F52;line-height:1.9">依據你的條件與需求，提供合適建議與規劃方向，陪你走過每一個關鍵時刻。</div>
+      <div class="typo-note">行距 1.9，寬鬆舒適，讓人願意看完</div>
     </div>
   </div>
-
-  <!-- C -->
-  <div class="panel c">
-    <div class="top">
-      <div class="ghost">C</div>
-      <div class="tag">Direction C</div>
-      <h1>你的問題<br>我先<em>聽</em></h1>
-      <div class="sub">真人 · 真案例 · 不強迫辦理</div>
-    </div>
-    <div class="bar"></div>
-    <div class="bottom">
-      <div class="chips">
-        <span class="chip">純白底色</span>
-        <span class="chip">真人主視覺</span>
-        <span class="chip">故事感</span>
-        <span class="chip">建立信任</span>
-      </div>
-      <div class="demo">
-        <span class="dh">標題</span>
-        <span class="da">金</span>
-        <span class="dl">說明文字</span>
-      </div>
-    </div>
-  </div>
-
 </div>
 
-<div class="dots">
+<!-- ══════ PANEL B ══════ -->
+<div class="panel b">
+  <div class="b-hero">
+    <div class="b-hero-ghost">B</div>
+    <div class="b-dir">Direction B</div>
+    <h1>找<em>阿哥</em><br>解燃眉之急</h1>
+    <div class="concept">合法 · 專業 · 安全 · 一條龍服務</div>
+  </div>
+  <div class="b-bar"></div>
+
+  <!-- IDEA -->
+  <div class="b-idea">
+    <div class="sec-label" style="color:#C49A30">設計理念</div>
+    <div class="b-idea-text">
+      <strong>力量感・大氣・阿哥人設。</strong>黑底金字有份量、有氣場，跟現在 TikTok 廣告圖的視覺語言完全一致。客人點廣告進來不會有陌生感，直接延伸廣告的衝擊力。
+    </div>
+  </div>
+
+  <!-- PALETTE -->
+  <div class="b-palette">
+    <div class="sec-label" style="color:#C49A30">配色方案</div>
+    <div class="palette-detail">
+      <div class="pd-row">
+        <div class="pd-sw sw-xl" style="background:#0D0B08;border:1px solid rgba(255,255,255,.08)"></div>
+        <div class="pd-info">
+          <div class="pd-name" style="color:#fff">極深黑</div>
+          <div class="pd-hex">#0D0B08</div>
+          <div class="pd-use">主背景 — 佔整體約 60%</div>
+        </div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-sw sw-lg" style="background:#1C1810"></div>
+        <div class="pd-info">
+          <div class="pd-name" style="color:#fff">暖黑次色</div>
+          <div class="pd-hex">#1C1810</div>
+          <div class="pd-use">區塊底色 / 卡片 — 約 25%</div>
+        </div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-sw sw-md" style="background:#E8C060"></div>
+        <div class="pd-info">
+          <div class="pd-name" style="color:#fff">亮金</div>
+          <div class="pd-hex">#E8C060</div>
+          <div class="pd-use">主強調色 / 核心文字 — 約 10%</div>
+        </div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-sw sw-sm" style="background:#C49A30"></div>
+        <div class="pd-info">
+          <div class="pd-name" style="color:#fff">深金</div>
+          <div class="pd-hex">#C49A30</div>
+          <div class="pd-use">輔助金色 / 標籤 — 約 3%</div>
+        </div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-sw sw-xs" style="background:#FDF6DC"></div>
+        <div class="pd-info">
+          <div class="pd-name" style="color:#fff">奶白</div>
+          <div class="pd-hex">#FDF6DC</div>
+          <div class="pd-use">次要文字 — 約 2%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="b-typo">
+    <div class="sec-label" style="color:#C49A30">字型規劃</div>
+
+    <div class="typo-block">
+      <div class="typo-spec">主標題 · Noto Sans TC 900 · 48–64px</div>
+      <div class="typo-sample" style="font-size:36px;font-weight:900;color:#fff;letter-spacing:-.02em">找阿哥</div>
+      <div class="typo-note" style="color:rgba(255,255,255,.28)">白色超大字，氣場壓場，可放真人大圖後面</div>
+    </div>
+
+    <div class="typo-block">
+      <div class="typo-spec">金色強調 · Noto Sans TC 900 · 同標題尺寸</div>
+      <div class="typo-sample" style="font-size:36px;font-weight:900;color:#E8C060;letter-spacing:-.02em">阿哥</div>
+      <div class="typo-note" style="color:rgba(255,255,255,.28)">人名 / 服務名稱用亮金，是整頁最亮的點</div>
+    </div>
+
+    <div class="typo-block">
+      <div class="typo-spec">副標 · Noto Sans TC 100 · 14px</div>
+      <div class="typo-sample" style="font-size:14px;font-weight:100;color:rgba(255,255,255,.45);letter-spacing:.1em">合法 · 專業 · 安全 · 一條龍服務</div>
+      <div class="typo-note" style="color:rgba(255,255,255,.28)">極細字在黑底幾乎是字幕感，高級低調</div>
+    </div>
+
+    <div class="typo-block">
+      <div class="typo-spec">內文 · Noto Sans TC 300 · 13px</div>
+      <div class="typo-sample" style="font-size:13px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.9">成功協助 5000+ 案例，有效解決客人需求，合法・專業・安全。</div>
+      <div class="typo-note" style="color:rgba(255,255,255,.28)">低調配色，數字用金色強調</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ PANEL C ══════ -->
+<div class="panel c">
+  <div class="c-hero">
+    <div class="c-hero-ghost">C</div>
+    <div class="c-dir">Direction C</div>
+    <h1>你的問題<br>我先<em>聽</em></h1>
+    <div class="concept">真人 · 真案例 · 不強迫辦理</div>
+  </div>
+  <div class="c-bar"></div>
+
+  <!-- IDEA -->
+  <div class="c-idea">
+    <div class="sec-label" style="color:#888">設計理念</div>
+    <div class="c-idea-text">
+      <strong>親切感・真人信任・故事感。</strong>靠真人照片佔滿上半部拉近距離，「你在跟一個真實的人說話」。對標保險業務員、房仲、個人品牌顧問類網站，靠口碑介紹來的客人最有感。
+    </div>
+  </div>
+
+  <!-- PALETTE -->
+  <div class="c-palette">
+    <div class="sec-label" style="color:#888">配色方案</div>
+    <div class="palette-detail">
+      <div class="pd-row">
+        <div class="pd-sw sw-xl" style="background:#FAFAF8;border:1px solid #E8E4DC"></div>
+        <div class="pd-info">
+          <div class="pd-name">純白近白</div>
+          <div class="pd-hex">#FAFAF8</div>
+          <div class="pd-use">主背景 — 佔整體約 55%</div>
+        </div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-sw sw-lg" style="background:#EDEBE6"></div>
+        <div class="pd-info">
+          <div class="pd-name">暖米灰</div>
+          <div class="pd-hex">#EDEBE6</div>
+          <div class="pd-use">區塊底 / 分隔 — 約 25%</div>
+        </div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-sw sw-md" style="background:#1C1C1A"></div>
+        <div class="pd-info">
+          <div class="pd-name">炭黑</div>
+          <div class="pd-hex">#1C1C1A</div>
+          <div class="pd-use">主文字 / 標題 — 約 15%</div>
+        </div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-sw sw-sm" style="background:#D4A820"></div>
+        <div class="pd-info">
+          <div class="pd-name">暖金</div>
+          <div class="pd-hex">#D4A820</div>
+          <div class="pd-use">點睛色 / 重點 — 約 4%</div>
+        </div>
+      </div>
+      <div class="pd-row">
+        <div class="pd-sw sw-xs" style="background:#AAA"></div>
+        <div class="pd-info">
+          <div class="pd-name">中性灰</div>
+          <div class="pd-hex">#AAAAAA</div>
+          <div class="pd-use">輔助文字 / 標籤 — 約 1%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="c-typo">
+    <div class="sec-label" style="color:#888">字型規劃</div>
+
+    <div class="typo-block">
+      <div class="typo-spec">主標題 · Noto Sans TC 900 · 44–56px</div>
+      <div class="typo-sample" style="font-size:36px;font-weight:900;color:#1C1C1A;letter-spacing:-.02em">你的問題</div>
+      <div class="typo-note">黑色超粗字配白底，清晰有力度</div>
+    </div>
+
+    <div class="typo-block">
+      <div class="typo-spec">強調色 · Noto Sans TC 900 · 同標題尺寸</div>
+      <div class="typo-sample" style="font-size:36px;font-weight:900;color:#D4A820;letter-spacing:-.02em">我先聽</div>
+      <div class="typo-note">關鍵動詞用金色，「聽」這個字就是整頁的訴求</div>
+    </div>
+
+    <div class="typo-block">
+      <div class="typo-spec">人名標記 · Noto Sans TC 700 · 13–14px</div>
+      <div class="typo-sample" style="font-size:13px;font-weight:700;color:#555;letter-spacing:.1em">阿哥 · 金昱當舖</div>
+      <div class="typo-note">低調的身分識別，不搶主標題</div>
+    </div>
+
+    <div class="typo-block">
+      <div class="typo-spec">內文 · Noto Sans TC 300 · 14px</div>
+      <div class="typo-sample" style="font-size:14px;font-weight:300;color:#6B6560;line-height:1.9">成功協助 5000+ 案例，了解方向・不強迫推銷，安全保密・專人協助。</div>
+      <div class="typo-note">行距 1.9，讀起來舒服，建立閱讀信任感</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end wrap -->
+
+<!-- DOTS -->
+<div class="dots" id="dots">
   <div class="dot on" id="d0"></div>
   <div class="dot" id="d1"></div>
   <div class="dot" id="d2"></div>
 </div>
 
+<!-- ARROWS -->
 <button class="arr L" id="prev">
   <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
 </button>
@@ -356,24 +526,53 @@ h1 em { font-style: normal; }
 
 <script>
 var wrap = document.getElementById('wrap');
-var dots = [document.getElementById('d0'),document.getElementById('d1'),document.getElementById('d2')];
+var panels = document.querySelectorAll('.panel');
+var dotEls = [document.getElementById('d0'),document.getElementById('d1'),document.getElementById('d2')];
 var cur = 0, total = 3;
 
 function go(i) {
   cur = Math.max(0, Math.min(total-1, i));
   wrap.style.transition = 'transform .42s cubic-bezier(.4,0,.2,1)';
   wrap.style.transform = 'translateX(-' + (cur * 100) + 'vw)';
-  dots.forEach(function(d,j){ d.classList.toggle('on', j===cur); });
+  dotEls.forEach(function(d,j){ d.classList.toggle('on', j===cur); });
+  // dot color based on panel
+  var dotsEl = document.getElementById('dots');
+  dotsEl.style.mixBlendMode = cur === 1 ? 'normal' : 'normal';
+  dotEls.forEach(function(d){
+    d.style.background = d.classList.contains('on')
+      ? (cur===1 ? 'rgba(220,180,60,.85)' : 'rgba(100,80,40,.7)')
+      : (cur===1 ? 'rgba(255,255,255,.2)' : 'rgba(120,110,100,.4)');
+  });
 }
+
+go(0);
 
 document.getElementById('prev').onclick = function(){ go(cur-1); };
 document.getElementById('next').onclick = function(){ go(cur+1); };
 
-var sx=0, sy=0, dragging=false, dx=0;
+// Arrow color
+function updateArrows() {
+  var arrs = document.querySelectorAll('.arr');
+  arrs.forEach(function(a){
+    if (cur === 1) {
+      a.style.background = 'rgba(255,255,255,.08)';
+      a.style.borderColor = 'rgba(255,255,255,.1)';
+      a.style.color = 'rgba(255,255,255,.5)';
+    } else {
+      a.style.background = 'rgba(0,0,0,.08)';
+      a.style.borderColor = 'rgba(0,0,0,.1)';
+      a.style.color = 'rgba(0,0,0,.4)';
+    }
+  });
+}
+
+// TOUCH
+var sx=0, sy=0, dragging=false, dx=0, scrolling=false;
+
 document.addEventListener('touchstart', function(e){
   sx = e.touches[0].clientX;
   sy = e.touches[0].clientY;
-  dragging = true; dx = 0;
+  dragging = true; dx = 0; scrolling = false;
   wrap.style.transition = 'none';
 }, {passive:true});
 
@@ -381,22 +580,28 @@ document.addEventListener('touchmove', function(e){
   if (!dragging) return;
   dx = e.touches[0].clientX - sx;
   var dy = e.touches[0].clientY - sy;
-  if (Math.abs(dy) > Math.abs(dx)) { dragging=false; go(cur); return; }
-  var pct = cur*100 - (dx/window.innerWidth)*100;
-  wrap.style.transform = 'translateX(-' + pct + 'vw)';
+  if (!scrolling && Math.abs(dy) > Math.abs(dx) + 5) {
+    scrolling = true; dragging = false; go(cur); return;
+  }
+  if (scrolling) return;
+  if (Math.abs(dx) > 5) {
+    var pct = cur*100 - (dx/window.innerWidth)*100;
+    wrap.style.transform = 'translateX(-' + pct + 'vw)';
+  }
 }, {passive:true});
 
 document.addEventListener('touchend', function(){
-  if (!dragging) return;
+  if (scrolling || !dragging) { dragging=false; return; }
   dragging = false;
-  if (dx < -48 && cur < total-1) go(cur+1);
-  else if (dx > 48 && cur > 0) go(cur-1);
+  if (dx < -44 && cur < total-1) go(cur+1);
+  else if (dx > 44 && cur > 0) go(cur-1);
   else go(cur);
+  updateArrows();
 });
 
 document.addEventListener('keydown', function(e){
-  if (e.key==='ArrowRight') go(cur+1);
-  if (e.key==='ArrowLeft') go(cur-1);
+  if (e.key==='ArrowRight') { go(cur+1); updateArrows(); }
+  if (e.key==='ArrowLeft') { go(cur-1); updateArrows(); }
 });
 </script>
 </body>
