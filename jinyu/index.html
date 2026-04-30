@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>金昱 設計方向提案</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  height: 100%;
+  font-family: 'Noto Sans TC', sans-serif;
+  background: #111;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.carousel {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  height: 100%;
+  width: 300%;
+  transition: transform .45s cubic-bezier(.4,0,.2,1);
+  will-change: transform;
+}
+
+.slide {
+  width: 33.333%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px 56px;
+  flex-shrink: 0;
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 40px 100px rgba(0,0,0,.6);
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 48px 32px 38px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ghost-letter {
+  position: absolute;
+  right: -12px;
+  top: -20px;
+  font-size: 140px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -.04em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* A */
+.a .hero { background: #F4F0E8; }
+.a .ghost-letter { color: rgba(139,107,30,.07); }
+.a .dir-tag { color: #A8802A; }
+.a .headline { color: #1A1714; }
+.a .headline em { color: #8B6B1E; }
+.a .sub { color: #9A8B7C; }
+
+/* B */
+.b .hero {
+  background: #0F0D0A;
+  background-image: radial-gradient(ellipse at 75% 0%, rgba(180,130,20,.18) 0%, transparent 55%);
+}
+.b .ghost-letter { color: rgba(200,160,40,.05); }
+.b .dir-tag { color: #C49A30; }
+.b .headline { color: #fff; }
+.b .headline em { color: #E8C060; }
+.b .sub { color: rgba(255,255,255,.32); }
+
+/* C */
+.c .hero { background: #FAFAF8; }
+.c .ghost-letter { color: rgba(0,0,0,.04); }
+.c .dir-tag { color: #999; }
+.c .headline { color: #1C1C1A; }
+.c .headline em { color: #D4A820; }
+.c .sub { color: #AAA; }
+
+.dir-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.headline {
+  font-size: clamp(34px, 9vw, 50px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+}
+.headline em { font-style: normal; }
+
+.sub {
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: .1em;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── COLOR BAR ── */
+.bar { height: 8px; flex-shrink: 0; }
+.a .bar { background: linear-gradient(90deg, #F4F0E8 0%, #DDD5C0 30%, #C49A30 60%, #8B6B1E 80%, #1A1714 100%); }
+.b .bar { background: linear-gradient(90deg, #111 0%, #1C1810 30%, #C49A30 62%, #E8C060 82%, #FDF6DC 100%); }
+.c .bar { background: linear-gradient(90deg, #FFF 0%, #EEE 30%, #1C1C1A 55%, #D4A820 78%, #AAA 100%); }
+
+/* ── BODY ── */
+.body {
+  padding: 26px 32px 32px;
+  flex: 1;
+}
+.a .body { background: #F8F5F0; }
+.b .body { background: #181612; }
+.c .body { background: #F5F4F1; }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 24px;
+}
+.tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 4px;
+  letter-spacing: .04em;
+}
+.a .tag { background: #EDE8DC; color: #8B6B1E; }
+.b .tag { background: rgba(255,255,255,.06); color: #C49A30; border: 1px solid rgba(196,154,48,.2); }
+.c .tag { background: #E8E6E2; color: #555; }
+
+.typo-demo {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 16px 18px;
+  border-radius: 10px;
+}
+.a .typo-demo { background: #EDE8DC; }
+.b .typo-demo { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.05); }
+.c .typo-demo { background: #E8E6E2; }
+
+.t-heavy { font-size: 26px; font-weight: 900; line-height: 1; }
+.t-accent { font-size: 26px; font-weight: 900; line-height: 1; }
+.t-thin { font-size: 13px; font-weight: 100; line-height: 1; }
+.a .t-heavy { color: #1A1714; }
+.a .t-accent { color: #8B6B1E; }
+.a .t-thin { color: #9A8B7C; }
+.b .t-heavy { color: #fff; }
+.b .t-accent { color: #E8C060; }
+.b .t-thin { color: rgba(255,255,255,.28); }
+.c .t-heavy { color: #1C1C1A; }
+.c .t-accent { color: #D4A820; }
+.c .t-thin { color: #AAA; }
+
+/* ── DOTS ── */
+.dots {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255,255,255,.2);
+  transition: all .35s ease;
+}
+.dot.on {
+  width: 22px;
+  background: #fff;
+}
+
+/* ── ARROWS (mouse only) ── */
+.arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  color: rgba(255,255,255,.7);
+  transition: background .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.arrow:hover { background: rgba(255,255,255,.16); }
+.arrow.L { left: 14px; }
+.arrow.R { right: 14px; }
+@media (hover: none) { .arrow { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="carousel" id="carousel">
+  <div class="track" id="track">
+
+    <!-- A -->
+    <div class="slide">
+      <div class="card a">
+        <div class="hero">
+          <div class="ghost-letter">A</div>
+          <div class="dir-tag">Direction A</div>
+          <div class="headline">你的條件，<br>我幫你<em>整理方向</em></div>
+          <div class="sub">釐清現況 · 掌握可能 · 規劃下一步</div>
+        </div>
+        <div class="bar"></div>
+        <div class="body">
+          <div class="tags">
+            <span class="tag">米白底色</span>
+            <span class="tag">暖金點綴</span>
+            <span class="tag">極簡留白</span>
+            <span class="tag">顧問質感</span>
+          </div>
+          <div class="typo-demo">
+            <span class="t-heavy">標題</span>
+            <span class="t-accent">金</span>
+            <span class="t-thin">輕量說明文字</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B -->
+    <div class="slide">
+      <div class="card b">
+        <div class="hero">
+          <div class="ghost-letter">B</div>
+          <div class="dir-tag">Direction B</div>
+          <div class="headline">找<em>阿哥</em><br>解燃眉之急</div>
+          <div class="sub">合法 · 專業 · 安全 · 一條龍服務</div>
+        </div>
+        <div class="bar"></div>
+        <div class="body">
+          <div class="tags">
+            <span class="tag">深黑底色</span>
+            <span class="tag">黃金大字</span>
+            <span class="tag">衝擊力強</span>
+            <span class="tag">廣告一致</span>
+          </div>
+          <div class="typo-demo">
+            <span class="t-heavy">標題</span>
+            <span class="t-accent">金</span>
+            <span class="t-thin">說明文字</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C -->
+    <div class="slide">
+      <div class="card c">
+        <div class="hero">
+          <div class="ghost-letter">C</div>
+          <div class="dir-tag">Direction C</div>
+          <div class="headline">你的問題<br>我先<em>聽</em></div>
+          <div class="sub">真人 · 真案例 · 不強迫辦理</div>
+        </div>
+        <div class="bar"></div>
+        <div class="body">
+          <div class="tags">
+            <span class="tag">純白底色</span>
+            <span class="tag">真人主視覺</span>
+            <span class="tag">故事感</span>
+            <span class="tag">建立信任</span>
+          </div>
+          <div class="typo-demo">
+            <span class="t-heavy">標題</span>
+            <span class="t-accent">金</span>
+            <span class="t-thin">說明文字</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="dots">
+  <div class="dot on" id="d0"></div>
+  <div class="dot" id="d1"></div>
+  <div class="dot" id="d2"></div>
+</div>
+
+<button class="arrow L" id="prev" aria-label="上一張">
+  <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+</button>
+<button class="arrow R" id="next" aria-label="下一張">
+  <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+</button>
+
+<script>
+var track = document.getElementById('track');
+var dotEls = [document.getElementById('d0'), document.getElementById('d1'), document.getElementById('d2')];
+var cur = 0;
+var total = 3;
+
+function go(i) {
+  cur = Math.max(0, Math.min(total - 1, i));
+  track.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
+  track.style.transform = 'translateX(-' + (cur * 33.333) + '%)';
+  dotEls.forEach(function(d, j) { d.classList.toggle('on', j === cur); });
+}
+
+document.getElementById('prev').onclick = function() { go(cur - 1); };
+document.getElementById('next').onclick = function() { go(cur + 1); };
+
+var sx = 0, dragging = false, delta = 0;
+var el = document.getElementById('carousel');
+
+el.addEventListener('touchstart', function(e) {
+  sx = e.touches[0].clientX;
+  dragging = true;
+  delta = 0;
+  track.style.transition = 'none';
+}, { passive: true });
+
+el.addEventListener('touchmove', function(e) {
+  if (!dragging) return;
+  delta = e.touches[0].clientX - sx;
+  var pct = cur * 33.333 - (delta / window.innerWidth) * 33.333;
+  track.style.transform = 'translateX(-' + pct + '%)';
+}, { passive: true });
+
+el.addEventListener('touchend', function() {
+  dragging = false;
+  if (delta < -48 && cur < total - 1) go(cur + 1);
+  else if (delta > 48 && cur > 0) go(cur - 1);
+  else go(cur);
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight') go(cur + 1);
+  if (e.key === 'ArrowLeft') go(cur - 1);
+});
+</script>
+</body>
+</html>
